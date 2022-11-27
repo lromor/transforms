@@ -29,7 +29,7 @@ const float s = 3 + 2;
 There's a one-to-one definition beteween c++ and math, a binary operator (such as '+' and '*') are both binary operators as they require two numbers to produce an output.
 Assuming our approximation holds (mapping floats to real numbers), we can write the c++ line to a specific mathematical syntax $s : = 3 + 2, s \in \mathbb{R}$ which reads, 
 's' is defined as the sum of three times two, where s is a real number.
-The same applies to the product of two numbers in c++ (`*`) which in math, maps to the standard symbol "$\cdot$" or sometimes "$\times$". Like in c++, operators in math can be overloaded, 
+The same applies to the product of two numbers in c++ (`*`) which in math, maps to the standard symbol " $\cdot$ " or sometimes " $\times$ ". Like in c++, operators in math can be overloaded, 
 so product and sums, can be sometimes defined on any object of any type, we'll later see how this overloading for instance can occur for vectors!
 
 How about arrays? In c++ we can do something like:
@@ -38,18 +38,19 @@ How about arrays? In c++ we can do something like:
 const float a[] = {1.2, 3.14, 7.2, 42};
 ```
 to define an array of real numbers of size 4 with elements 1.2, 3.14, 7.2 and 42. To refer to an element at index `i`, in c++ you can use `a[i]`. 
-In the mathematical world, an array can be represented via different [notations][vector-notation], in our workshop we decide to just define any variable as an array if it's in bold "$\textbf{a}$".
+In the mathematical world, an array can be represented via different [notations][vector-notation], in our workshop we decide to just define any variable as an array if it's in bold " $\textbf{a}$ ".
 The elements of the array $\textbf{a}$ are instead represented via the [index notation][index-notation], which means you can use both subscripts and superscripts to specify indexes, for instance $a^i$ for the previous example. 
 Or sometimes, for $n$ elements, via large vertical/horizontal parenthesis:
 
-$$
-\begin{pmatrix}
+``` math
+\begin{bmatrix}
   a_{1} \\
   a_{2} \\
   \vdots \\
-  \alpha_{n} \\
-\end{pmatrix}
-$$.
+  a_{n}
+\end{bmatrix}
+```
+.
 
 In the math world, single-valued variables are called scalars, arrays are instead called vectors.
 
@@ -64,9 +65,9 @@ for (int i = 0; i < 4; ++i) {
 
 In math notation, this can be easily constructed using the $\Sigma$ [iterated-binary-operation][index-notation].
 If we unrolled the loop, we would get: `const float r = a[0] + a[1] + a[2] + a[3]` and, in math notation:
-$$
+``` math
 r : = a_0 + a_1 + a_2 + a_3, r \in \mathbb{R}, \textbf{a} = (1, 3, 5, 2)
-$$
+```
 
 As we can see it would be nice to have an operator that just accumulates the $a_{i}$ values given some index. We can conveniently write this using:
 
@@ -74,13 +75,15 @@ $$
 \sum_{i=0}^{3} a_{i}
 $$
 
-or, if we [define][set-builder-notation] the set $A := \{1, 2, 5, 2\}$, then:
+or, if we [define][set-builder-notation] the set $A := \{1, 2, 5, 2\}$ , then:
+
 $$
 \sum_{i \in A} i
 $$
 
 There's a lot of flexibility in this notation!
 What if we need to make a product instead of a sum? Just use:
+
 $$
 \prod_{i \in A} i
 $$
@@ -93,6 +96,7 @@ On real numbers, "standard" sums and products have interesting simple properties
 When we use these operations on summations and products we can play with the notation to greatly simplify statements!
 
 For instance, given an arbitrary vector $\textbf{a}$ of size $n$ and a scalar (a number) $c$ is this true?
+
 $$
 \sum_{i=0}^{n} c \cdot a_{i} = c \cdot \sum_{i=0}^{n} a_{i} 
 $$
@@ -137,7 +141,7 @@ There are a bunch more tricks, that I won't show here, be careful though, there 
 > It's easy to check with small values if a property holds! It's not a substitute to a proof, but it works well most of the times.
 
 ## Functions 
-![function](img/function.png)
+<img src="img/function.png" width="300">
 
 A function from a set X to a set Y is an assignment of an element of Y to each element of X. The set X is called the domain of the function and the set Y is called the codomain of the function.
 
@@ -154,8 +158,9 @@ Given $f \colon X \longrightarrow Y$ and $g \colon X \longrightarrow Y$, we have
 
 Function can be composed composed as well!
 
-![function-composition](img/function-composition.png)
+<img src="img/function-composition.png" width="500">
 
+In C/C++ we have a similar concept of function composition which is more than enough for us!
 
 ### Numerical representation
 
@@ -165,16 +170,18 @@ Both methods are extremely important, the former to have a standardized language
 How do we deal with functions numerically? We usually just create ordered samples of them. Any signal, sound or image can be seen as a function having as domain 
 a sampling frequency or a "pixel domain", we can think it a 2d set in which all the elements are locations of the pixels, and our image is a function of those locations.
 
-
-
-
 # Spaces, dot product between vectors and functions.
 
-Dot product, can be defined even between functiosn!
+A vector space is defined as a set and two binary operations (sum and a product with a scalar). The elements of the set are vectors. 
+You can extend this system and even add a dot-product between vectors! That's a very important concept! Instead of writing more formulas, this time
+let's try to fill the coding exercise about vectors!
 
-Anything special that we should be careful of? Sure square integrable.
+Now that we define the vector product, what does it mean? 
 
- 
+Is it possible to represent any vector of the vector space via comibination of basic vectors? Yes! We do it all the time! We can describe in 3D any vector using the normal (as every basis vector is perpendicular, hence inner product is 0) and with norm 1, this is the usual cartesian representation (X,Y,Z).
+
+What is happening here is that we can represent any point in space as a linear combination (as a sum of scaled basis vectors) of basis vectors!
+This is super important! Why? What if instead of vectors, we had functions? How does the scalar multiplication, sum and inner product behave when you have functions instead of vectors of numbers? We'll get there soon!
 
 # Integrals and derivatives
 
